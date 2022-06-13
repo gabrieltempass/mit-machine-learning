@@ -9,7 +9,8 @@ def get_order(n_samples):
     try:
         with open(str(n_samples) + '.txt') as fp:
             line = fp.readline()
-            return list(map(int, line.split(',')))
+            return list(map(int, line.split(
+                ',')))
     except FileNotFoundError:
         random.seed(1)
         indices = list(range(n_samples))
@@ -85,8 +86,10 @@ def perceptron_single_step_update(
     real valued number with the value of theta_0 after the current updated has
     completed.
     """
-    # Your code here
-    raise NotImplementedError
+    if label * (np.dot(current_theta, feature_vector) + current_theta_0) <= 0:
+        current_theta = current_theta + label * feature_vector
+        current_theta_0 = current_theta_0 + label
+    return (current_theta, current_theta_0)
 
 
 def perceptron(feature_matrix, labels, T):
