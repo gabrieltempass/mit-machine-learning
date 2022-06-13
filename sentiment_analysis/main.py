@@ -47,6 +47,13 @@ T = 1
 perceptron = p1.perceptron(feature_matrix, labels, T)
 print(perceptron)  # (np.array([1, 2]), 1)
 
+# Average perceptron
+feature_matrix = np.array([[1, 2]])
+labels = np.array([1])
+T = 1
+average_perceptron = p1.average_perceptron(feature_matrix, labels, T)
+print(average_perceptron)  # (np.array([1, 2]), 1)
+
 #-------------------------------------------------------------------------------
 # Problem 5
 #-------------------------------------------------------------------------------
