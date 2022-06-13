@@ -33,8 +33,8 @@ def hinge_loss_single(feature_vector, label, theta, theta_0):
     Returns: A real number representing the hinge loss associated with the
     given data point and parameters.
     """
-    # Your code here
-    raise NotImplementedError
+    hinge_loss = max(1 - label * (np.dot(theta, feature_vector) + theta_0), 0)
+    return hinge_loss
 
 
 def hinge_loss_full(feature_matrix, labels, theta, theta_0):

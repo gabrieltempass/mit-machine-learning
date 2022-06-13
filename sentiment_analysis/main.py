@@ -20,6 +20,11 @@ train_bow_features = p1.extract_bow_feature_vectors(train_texts, dictionary)
 val_bow_features = p1.extract_bow_feature_vectors(val_texts, dictionary)
 test_bow_features = p1.extract_bow_feature_vectors(test_texts, dictionary)
 
+feature_vector = np.array([1, 2])
+label, theta, theta_0 = 1, np.array([-1, 1]), -0.2
+hinge_loss = p1.hinge_loss_single(feature_vector, label, theta, theta_0)
+print(hinge_loss)
+
 #-------------------------------------------------------------------------------
 # Problem 5
 #-------------------------------------------------------------------------------
