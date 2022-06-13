@@ -54,6 +54,21 @@ T = 1
 average_perceptron = p1.average_perceptron(feature_matrix, labels, T)
 print(average_perceptron)  # (np.array([1, 2]), 1)
 
+# Pegasos single
+feature_vector = np.array([1, 2])
+label, current_theta, current_theta_0 = 1, np.array([-1, 1]), -1.5
+L = 0.2
+eta = 0.1
+pegasos_single = p1.pegasos_single_step_update(
+    feature_vector,
+    label,
+    L,
+    eta,
+    current_theta,
+    current_theta_0
+)
+print(pegasos_single)  # (np.array([-0.88, 1.18]), -1.4)
+
 #-------------------------------------------------------------------------------
 # Problem 5
 #-------------------------------------------------------------------------------

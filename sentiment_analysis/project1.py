@@ -189,7 +189,7 @@ def pegasos_single_step_update(
     Args:
         feature_vector - A numpy array describing a single data point.
         label - The correct classification of the feature vector.
-        L - The lamba value being used to update the parameters.
+        L - The lambda value being used to update the parameters.
         eta - Learning rate to update parameters.
         current_theta - The current theta being used by the Pegasos
             algorithm before this update.
@@ -201,8 +201,12 @@ def pegasos_single_step_update(
     real valued number with the value of theta_0 after the current updated has
     completed.
     """
-    # Your code here
-    raise NotImplementedError
+    if label * (np.dot(current_theta, feature_vector) + current_theta_0) <= 1:
+        current_theta = (1 - eta * L) * current_theta + eta * label * feature_vector
+        current_theta_0 = current_theta_0 + eta * label
+    else:
+        current_theta = (1 - eta * L) * current_theta
+    return (current_theta, current_theta_0)
 
 
 def pegasos(feature_matrix, labels, T, L):
