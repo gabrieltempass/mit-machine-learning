@@ -22,8 +22,13 @@ test_bow_features = p1.extract_bow_feature_vectors(test_texts, dictionary)
 
 feature_vector = np.array([1, 2])
 label, theta, theta_0 = 1, np.array([-1, 1]), -0.2
-hinge_loss = p1.hinge_loss_single(feature_vector, label, theta, theta_0)
-print(hinge_loss)
+hinge_loss_single = p1.hinge_loss_single(feature_vector, label, theta, theta_0)
+print(hinge_loss_single)
+
+feature_matrix = np.array([[1, 2], [1, 2]])
+labels, theta, theta_0 = np.array([1, 1]), np.array([-1, 1]), -0.2
+hinge_loss_full = p1.hinge_loss_full(feature_matrix, labels, theta, theta_0)
+print(hinge_loss_full)
 
 #-------------------------------------------------------------------------------
 # Problem 5
