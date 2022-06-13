@@ -24,22 +24,28 @@ test_bow_features = p1.extract_bow_feature_vectors(test_texts, dictionary)
 feature_vector = np.array([1, 2])
 label, theta, theta_0 = 1, np.array([-1, 1]), -0.2
 hinge_loss_single = p1.hinge_loss_single(feature_vector, label, theta, theta_0)
-print(hinge_loss_single)
+print(hinge_loss_single)  # 1 - 0.8
 
 # Hinge loss full
 feature_matrix = np.array([[1, 2], [1, 2]])
 labels, theta, theta_0 = np.array([1, 1]), np.array([-1, 1]), -0.2
 hinge_loss_full = p1.hinge_loss_full(feature_matrix, labels, theta, theta_0)
-print(hinge_loss_full)
+print(hinge_loss_full)  # 1 - 0.8
 
 # Perceptron single
 feature_vector = np.array([1, 2])
 label, current_theta, current_theta_0 = 1, np.array([-1, 1]), -1.5
-# exp_res = (np.array([0, 3]), -0.5)
 perceptron_single = p1.perceptron_single_step_update(
     feature_vector, label, current_theta, current_theta_0
 )
-print(perceptron_single)
+print(perceptron_single)  # (np.array([0, 3]), -0.5)
+
+# Perceptron
+feature_matrix = np.array([[1, 2]])
+labels = np.array([1])
+T = 1
+perceptron = p1.perceptron(feature_matrix, labels, T)
+print(perceptron)  # (np.array([1, 2]), 1)
 
 #-------------------------------------------------------------------------------
 # Problem 5
