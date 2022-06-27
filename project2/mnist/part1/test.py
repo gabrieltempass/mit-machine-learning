@@ -16,17 +16,22 @@ verbose = False
 
 epsilon = 1e-6
 
+
 def green(s):
     return '\033[1;32m%s\033[m' % s
+
 
 def yellow(s):
     return '\033[1;33m%s\033[m' % s
 
+
 def red(s):
     return '\033[1;31m%s\033[m' % s
 
+
 def log(*m):
     print(" ".join(map(str, m)))
+
 
 def log_exit(*m):
     log(red("ERROR:"), *m)
@@ -52,6 +57,7 @@ def equals(x, y):
         return (np.abs(x - y) < epsilon).all()
     return -epsilon < x - y < epsilon
 
+
 def check_tuple(ex_name, f, exp_res, *args, **kwargs):
     try:
         res = f(*args, **kwargs)
@@ -67,6 +73,7 @@ def check_tuple(ex_name, f, exp_res, *args, **kwargs):
     if not all(equals(x, y) for x, y in zip(res, exp_res)):
         log(red("FAIL"), ex_name, ": incorrect answer. Expected", exp_res, ", got: ", res)
         return True
+
 
 def check_array(ex_name, f, exp_res, *args):
     try:
@@ -85,6 +92,7 @@ def check_array(ex_name, f, exp_res, *args):
 
         return True
 
+
 def check_list(ex_name, f, exp_res, *args):
     try:
         res = f(*args)
@@ -101,6 +109,7 @@ def check_list(ex_name, f, exp_res, *args):
         log(red("FAIL"), ex_name, ": incorrect answer. Expected", exp_res, ", got: ", res)
         return True
 
+
 def check_get_mnist():
     ex_name = "Get MNIST data"
     train_x, train_y, test_x, test_y = utils.get_MNIST_data()
@@ -112,13 +121,14 @@ def check_closed_form():
     X = np.arange(1, 16).reshape(3, 5)
     Y = np.arange(1, 4)
     lambda_factor = 0.5
-    exp_res = np.array([-0.03411225,  0.00320187,  0.04051599,  0.07783012,  0.11514424])
+    exp_res = np.array([-0.03411225, 0.00320187, 0.04051599, 0.07783012, 0.11514424])
     if check_array(
             ex_name, linear_regression.closed_form,
             exp_res, X, Y, lambda_factor):
         return
 
     log(green("PASS"), ex_name, "")
+
 
 def check_svm():
     ex_name = "One vs rest SVM"
@@ -169,6 +179,7 @@ def check_compute_probabilities():
 
     log(green("PASS"), ex_name, "")
 
+
 def check_compute_cost_function():
     ex_name = "Compute cost function"
     n, d, k = 3, 5, 7
@@ -184,6 +195,7 @@ def check_compute_cost_function():
         return
     log(green("PASS"), ex_name, "")
 
+
 def check_run_gradient_descent_iteration():
     ex_name = "Run gradient descent iteration"
     n, d, k = 3, 5, 7
@@ -195,13 +207,13 @@ def check_run_gradient_descent_iteration():
     lambda_factor = 0.5
     exp_res = np.zeros((k, d))
     exp_res = np.array([
-       [ -7.14285714,  -5.23809524,  -3.33333333,  -1.42857143, 0.47619048],
-       [  9.52380952,  11.42857143,  13.33333333,  15.23809524, 17.14285714],
-       [ 26.19047619,  28.0952381 ,  30.        ,  31.9047619 , 33.80952381],
-       [ -7.14285714,  -8.57142857, -10.        , -11.42857143, -12.85714286],
-       [ -7.14285714,  -8.57142857, -10.        , -11.42857143, -12.85714286],
-       [ -7.14285714,  -8.57142857, -10.        , -11.42857143, -12.85714286],
-       [ -7.14285714,  -8.57142857, -10.        , -11.42857143, -12.85714286]
+       [-7.14285714,  -5.23809524,  -3.33333333,  -1.42857143,   0.47619048],
+       [ 9.52380952,  11.42857143,  13.33333333,  15.23809524,  17.14285714],
+       [26.19047619,  28.0952381 ,  30.        ,  31.9047619 ,  33.80952381],
+       [-7.14285714,  -8.57142857, -10.        , -11.42857143, -12.85714286],
+       [-7.14285714,  -8.57142857, -10.        , -11.42857143, -12.85714286],
+       [-7.14285714,  -8.57142857, -10.        , -11.42857143, -12.85714286],
+       [-7.14285714,  -8.57142857, -10.        , -11.42857143, -12.85714286]
     ])
 
     if check_array(
@@ -210,6 +222,7 @@ def check_run_gradient_descent_iteration():
         return
     softmax.run_gradient_descent_iteration(X, Y, zeros, alpha, lambda_factor, temp)
     log(green("PASS"), ex_name, "")
+
 
 def check_update_y():
     ex_name = "Update y"
@@ -225,7 +238,8 @@ def check_update_y():
         return
     log(green("PASS"), ex_name, "")
 
-###Correction note:  check_project_onto_PC fucntion have been modified since release.
+
+# Correction note:  check_project_onto_PC fucntion have been modified since release.
 def check_project_onto_PC():
     ex_name = "Project onto PC"
     X = np.array([
@@ -249,6 +263,7 @@ def check_project_onto_PC():
         return
     log(green("PASS"), ex_name, "")
 
+
 def check_polynomial_kernel():
     ex_name = "Polynomial kernel"
     n, m, d = 3, 5, 7
@@ -265,13 +280,14 @@ def check_polynomial_kernel():
         for j in range(m):
             exp = (X[i] @ Y[j] + c) ** d
             got = K[i][j]
-            if (not equals(exp, got)):
+            if not equals(exp, got):
                 log(
                     red("FAIL"), ex_name,
                     ": values at ({}, {}) do not match. Expected {}, got {}"
                     .format(i, j, exp, got)
                 )
     log(green("PASS"), ex_name, "")
+
 
 def check_rbf_kernel():
     ex_name = "RBF kernel"
@@ -288,7 +304,7 @@ def check_rbf_kernel():
         for j in range(m):
             exp = np.exp(-gamma * (np.linalg.norm(X[i] - Y[j]) ** 2))
             got = K[i][j]
-            if (not equals(exp, got)):
+            if not equals(exp, got):
                 log(
                     red("FAIL"), ex_name,
                     ": values at ({}, {}) do not match. Expected {}, got {}"
@@ -312,6 +328,7 @@ def main():
         check_rbf_kernel()
     except Exception:
         log_exit(traceback.format_exc())
+
 
 if __name__ == "__main__":
     main()

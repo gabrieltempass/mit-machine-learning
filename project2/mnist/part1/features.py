@@ -6,7 +6,7 @@ def project_onto_PC(X, pcs, n_components, feature_means):
     """
     Given principal component vectors pcs = principal_components(X)
     this function returns a new data array in which each sample in X
-    has been projected onto the first n_components principcal components.
+    has been projected onto the first n_components principal components.
     """
     # TODO: first center data using the feature_means
     # TODO: Return the projection of the centered dataset
@@ -19,7 +19,7 @@ def project_onto_PC(X, pcs, n_components, feature_means):
     raise NotImplementedError
 
 
-### Functions which are already complete, for you to use ###
+# Functions which are already complete, for you to use
 
 def cubic_features(X):
     """
@@ -91,8 +91,7 @@ def center_data(X):
     Returns:
         - (n, d) NumPy array X' where for each i = 1, ..., n and j = 1, ..., d:
         X'[i][j] = X[i][j] - means[j]       
-	- (d, ) NumPy array with the columns means
-
+        - (d, ) NumPy array with the columns means
     """
     feature_means = X.mean(axis=0)
     return (X - feature_means), feature_means
@@ -123,13 +122,13 @@ def principal_components(centered_data):
     return eigen_vectors
 
 
-###Correction note:  Differing from the release, this function takes an extra input feature_means.
+# Correction note:  Differing from the release, this function takes an extra input feature_means.
 
 def plot_PC(X, pcs, labels, feature_means):
     """
     Given the principal component vectors as the columns of matrix pcs,
     this function projects each sample in X onto the first two principal components
-    and produces a scatterplot where points are marked with the digit depicted in
+    and produces a scatter plot where points are marked with the digit depicted in
     the corresponding image.
     labels = a numpy array containing the digits corresponding to each image in X.
     """
@@ -144,7 +143,7 @@ def plot_PC(X, pcs, labels, feature_means):
     plt.show()
 
 
-###Correction note:  Differing from the release, this function takes an extra input feature_means.
+# Correction note:  Differing from the release, this function takes an extra input feature_means.
 
 def reconstruct_PC(x_pca, pcs, n_components, X, feature_means):
     """

@@ -19,27 +19,29 @@ def augment_feature_vector(X):
     column_of_ones = np.zeros([len(X), 1]) + 1
     return np.hstack((column_of_ones, X))
 
+
 def compute_probabilities(X, theta, temp_parameter):
     """
     Computes, for each datapoint X[i], the probability that X[i] is labeled as j
     for j = 0, 1, ..., k-1
 
     Args:
-        X - (n, d) NumPy array (n datapoints each with d features)
+        X - (n, d) NumPy array (n data points each with d features)
         theta - (k, d) NumPy array, where row j represents the parameters of our model for label j
         temp_parameter - the temperature parameter of softmax function (scalar)
     Returns:
         H - (k, n) NumPy array, where each entry H[j][i] is the probability that X[i] is labeled as j
     """
-    #YOUR CODE HERE
+    # YOUR CODE HERE
     raise NotImplementedError
+
 
 def compute_cost_function(X, Y, theta, lambda_factor, temp_parameter):
     """
     Computes the total cost over every datapoint.
 
     Args:
-        X - (n, d) NumPy array (n datapoints each with d features)
+        X - (n, d) NumPy array (n data points each with d features)
         Y - (n, ) NumPy array containing the labels (a number from 0-9) for each
             data point
         theta - (k, d) NumPy array, where row j represents the parameters of our
@@ -50,15 +52,16 @@ def compute_cost_function(X, Y, theta, lambda_factor, temp_parameter):
     Returns
         c - the cost value (scalar)
     """
-    #YOUR CODE HERE
+    # YOUR CODE HERE
     raise NotImplementedError
+
 
 def run_gradient_descent_iteration(X, Y, theta, alpha, lambda_factor, temp_parameter):
     """
     Runs one step of batch gradient descent
 
     Args:
-        X - (n, d) NumPy array (n datapoints each with d features)
+        X - (n, d) NumPy array (n data points each with d features)
         Y - (n, ) NumPy array containing the labels (a number from 0-9) for each
             data point
         theta - (k, d) NumPy array, where row j represents the parameters of our
@@ -70,8 +73,9 @@ def run_gradient_descent_iteration(X, Y, theta, alpha, lambda_factor, temp_param
     Returns:
         theta - (k, d) NumPy array that is the final value of parameters theta
     """
-    #YOUR CODE HERE
+    # YOUR CODE HERE
     raise NotImplementedError
+
 
 def update_y(train_y, test_y):
     """
@@ -90,15 +94,16 @@ def update_y(train_y, test_y):
         test_y_mod3 - (n, ) NumPy array containing the new labels (a number between 0-2)
                     for each datapoint in the test set
     """
-    #YOUR CODE HERE
+    # YOUR CODE HERE
     raise NotImplementedError
+
 
 def compute_test_error_mod3(X, Y, theta, temp_parameter):
     """
     Returns the error of these new labels when the classifier predicts the digit. (mod 3)
 
     Args:
-        X - (n, d - 1) NumPy array (n datapoints each with d - 1 features)
+        X - (n, d - 1) NumPy array (n data points each with d - 1 features)
         Y - (n, ) NumPy array containing the labels (a number from 0-2) for each
             data point
         theta - (k, d) NumPy array, where row j represents the parameters of our
@@ -108,8 +113,9 @@ def compute_test_error_mod3(X, Y, theta, temp_parameter):
     Returns:
         test_error - the error rate of the classifier (scalar)
     """
-    #YOUR CODE HERE
+    # YOUR CODE HERE
     raise NotImplementedError
+
 
 def softmax_regression(X, Y, temp_parameter, alpha, lambda_factor, k, num_iterations):
     """
@@ -140,6 +146,7 @@ def softmax_regression(X, Y, temp_parameter, alpha, lambda_factor, k, num_iterat
         theta = run_gradient_descent_iteration(X, Y, theta, alpha, lambda_factor, temp_parameter)
     return theta, cost_function_progression
 
+
 def get_classification(X, theta, temp_parameter):
     """
     Makes predictions by classifying a given dataset
@@ -156,13 +163,15 @@ def get_classification(X, theta, temp_parameter):
     """
     X = augment_feature_vector(X)
     probabilities = compute_probabilities(X, theta, temp_parameter)
-    return np.argmax(probabilities, axis = 0)
+    return np.argmax(probabilities, axis=0)
+
 
 def plot_cost_function_over_time(cost_function_history):
     plt.plot(range(len(cost_function_history)), cost_function_history)
     plt.ylabel('Cost Function')
     plt.xlabel('Iteration number')
     plt.show()
+
 
 def compute_test_error(X, Y, theta, temp_parameter):
     error_count = 0.

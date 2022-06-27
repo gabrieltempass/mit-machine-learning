@@ -1,4 +1,6 @@
-import pickle, gzip, numpy as np
+import pickle
+import gzip
+import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import math
@@ -11,9 +13,9 @@ def plot_images(X):
     num_rows = math.floor(math.sqrt(num_images))
     num_cols = math.ceil(num_images/num_rows)
     for i in range(num_images):
-        reshaped_image = X[i,:].reshape(28,28)
+        reshaped_image = X[i, :].reshape(28, 28)
         plt.subplot(num_rows, num_cols, i+1)
-        plt.imshow(reshaped_image, cmap = cm.Greys_r)
+        plt.imshow(reshaped_image, cmap=cm.Greys_r)
         plt.axis('off')
     plt.show()
 
@@ -28,24 +30,27 @@ def pick_examples_of(X, Y, labels, total_count):
             bool_arr |= bool_arr_for_label
     filtered_x = X[bool_arr]
     filtered_y = Y[bool_arr]
-    return (filtered_x[:total_count], filtered_y[:total_count])
+    return filtered_x[:total_count], filtered_y[:total_count]
 
 
 def extract_training_and_test_examples_with_labels(train_x, train_y, test_x, test_y, labels, training_count, test_count):
     filtered_train_x, filtered_train_y = pick_examples_of(train_x, train_y, labels, training_count)
     filtered_test_x, filtered_test_y = pick_examples_of(test_x, test_y, labels, test_count)
-    return (filtered_train_x, filtered_train_y, filtered_test_x, filtered_test_y)
+    return filtered_train_x, filtered_train_y, filtered_test_x, filtered_test_y
+
 
 def write_pickle_data(data, file_name):
     f = gzip.open(file_name, 'wb')
     pickle.dump(data, f)
     f.close()
 
+
 def read_pickle_data(file_name):
     f = gzip.open(file_name, 'rb')
     data = pickle.load(f, encoding='latin1')
     f.close()
     return data
+
 
 def get_MNIST_data():
     """
@@ -64,11 +69,13 @@ def get_MNIST_data():
     train_x = np.vstack((train_x, valid_x))
     train_y = np.append(train_y, valid_y)
     test_x, test_y = test_set
-    return (train_x, train_y, test_x, test_y)
+    return train_x, train_y, test_x, test_y
+
 
 def load_train_and_test_pickle(file_name):
     train_x, train_y, test_x, test_y = read_pickle_data(file_name)
     return train_x, train_y, test_x, test_y
+
 
 # returns the feature set in a numpy ndarray
 def load_CSV(filename):
