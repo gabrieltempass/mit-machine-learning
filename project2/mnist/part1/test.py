@@ -318,7 +318,7 @@ def main():
     try:
         check_get_mnist()
         check_closed_form()
-        # check_svm()
+        check_svm()
         # check_compute_probabilities()
         # check_compute_cost_function()
         # check_run_gradient_descent_iteration()

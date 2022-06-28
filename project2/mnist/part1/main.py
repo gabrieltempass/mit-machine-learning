@@ -22,8 +22,6 @@ train_x, train_y, test_x, test_y = get_MNIST_data()
 # 2. Linear Regression with Closed Form Solution
 #######################################################################
 
-# TODO: first fill out functions in linear_regression.py, otherwise the functions below will not work
-
 
 def run_linear_regression_on_MNIST(lambda_factor=1):
     """
@@ -40,8 +38,7 @@ def run_linear_regression_on_MNIST(lambda_factor=1):
     return test_error
 
 
-# Don't run this until the relevant functions in linear_regression.py have been fully implemented.
-print('Linear Regression test_error =', run_linear_regression_on_MNIST(lambda_factor=0.01))
+print('Linear Regression test_error =', run_linear_regression_on_MNIST(lambda_factor=1))
 
 #######################################################################
 # 3. Support Vector Machine
@@ -49,22 +46,23 @@ print('Linear Regression test_error =', run_linear_regression_on_MNIST(lambda_fa
 
 # TODO: first fill out functions in svm.py, or the functions below will not work
 
-# def run_svm_one_vs_rest_on_MNIST():
-#     """
-#     Trains svm, classifies test data, computes test error on test set
-#
-#     Returns:
-#         Test error for the binary svm
-#     """
-#     train_x, train_y, test_x, test_y = get_MNIST_data()
-#     train_y[train_y != 0] = 1
-#     test_y[test_y != 0] = 1
-#     pred_test_y = one_vs_rest_svm(train_x, train_y, test_x)
-#     test_error = compute_test_error_svm(test_y, pred_test_y)
-#     return test_error
+
+def run_svm_one_vs_rest_on_MNIST():
+    """
+    Trains svm, classifies test data, computes test error on test set
+
+    Returns:
+        Test error for the binary svm
+    """
+    train_x, train_y, test_x, test_y = get_MNIST_data()
+    train_y[train_y != 0] = 1
+    test_y[test_y != 0] = 1
+    pred_test_y = one_vs_rest_svm(train_x, train_y, test_x)
+    test_error = compute_test_error_svm(test_y, pred_test_y)
+    return test_error
 
 
-# print('SVM one vs. rest test_error:', run_svm_one_vs_rest_on_MNIST())
+print('SVM one vs. rest test_error:', run_svm_one_vs_rest_on_MNIST())
 
 
 # def run_multiclass_svm_on_MNIST():
