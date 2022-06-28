@@ -65,20 +65,20 @@ def run_svm_one_vs_rest_on_MNIST():
 print('SVM one vs. rest test_error:', run_svm_one_vs_rest_on_MNIST())
 
 
-# def run_multiclass_svm_on_MNIST():
-#     """
-#     Trains svm, classifies test data, computes test error on test set
-#
-#     Returns:
-#         Test error for the binary svm
-#     """
-#     train_x, train_y, test_x, test_y = get_MNIST_data()
-#     pred_test_y = multi_class_svm(train_x, train_y, test_x)
-#     test_error = compute_test_error_svm(test_y, pred_test_y)
-#     return test_error
+def run_multiclass_svm_on_MNIST():
+    """
+    Trains svm, classifies test data, computes test error on test set
+
+    Returns:
+        Test error for the binary svm
+    """
+    train_x, train_y, test_x, test_y = get_MNIST_data()
+    pred_test_y = multi_class_svm(train_x, train_y, test_x)
+    test_error = compute_test_error_svm(test_y, pred_test_y)
+    return test_error
 
 
-# print('Multiclass SVM test_error:', run_multiclass_svm_on_MNIST())
+print('Multiclass SVM test_error:', run_multiclass_svm_on_MNIST())
 
 #######################################################################
 # 4. Multinomial (Softmax) Regression and Gradient Descent
