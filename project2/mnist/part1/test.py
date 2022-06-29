@@ -323,7 +323,7 @@ def main():
         check_compute_cost_function()
         check_run_gradient_descent_iteration()
         check_update_y()
-        # check_project_onto_PC()
+        check_project_onto_PC()
         # check_polynomial_kernel()
         # check_rbf_kernel()
     except Exception:
